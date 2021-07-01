@@ -6,16 +6,32 @@ This project is developed for the purpose of private partner bootcamp. Participa
 ![Use Case for this Project](https://github.com/jacobtan89/bootcamp-cap-bookshop/blob/master/Use%20Case.png?raw=true)
 
 ## Pre-requisites Check
-node
-npm
-cf cli
-cf plugins multiapps
-mta
-mbt
-cds
+Regardless if you're using Visual Studio code or SAP Business Application Studio, please ensure you have these components installed & setup in your local environment.
+
+> Check the following (line-by-line) command if they have already been installed, if not, install them with the respective commands below.
+
+```bash
+node -v
+cf --version
+cds v
+cf plugins
+mbt --version
+mta --version
+```
+
+> Install (line-by-line) on the respective libraries if any one of them above is missing.
+
+```bash
+npm install -g @sap/cds-dk
+npm install -g @sap/cds
+npm install -g mta
+npm install -g mbt
+cf install-plugin multiapps
+```
 
 
-## Setting Up in your Environment
+
+## Let's Get Started
 1. Clone into a bookshop folder.
 ```bash
 git clone https://github.com/jacobtan89/bootcamp-cap-bookshop.git bookshop
@@ -29,7 +45,6 @@ npm install
 ```bash
 cds watch
 ```
-
 4. `(Optional)` Connecting to your S/4 HANA Cloud System, please follow these steps.
 * Create a destination in your SAP BTP account, pointing to your S/4 HANA Cloud system.
 > Destination Name: `S4HC` 
@@ -44,9 +59,10 @@ In order to connect your app with the destination defined in your SAP BTP accoun
 ```bash
 mbt build -t ./
 ```
-- 
-b)
-
+- Once completed, let's deploy `bookshop_1.0.0.mtar` file in `bookshop` folder, to your SAP BTP Cloud Foundry environment..
+```bash
+cf deploy bookshop_1.0.0.mtar
+```
 If you face a problem with the example application or the description, feel free to create an [issue](https://github.com/jacobtan89/bootcamp-cap-bookshop/issues).
 
 ## Learn More
