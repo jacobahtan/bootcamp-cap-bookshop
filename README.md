@@ -1,27 +1,31 @@
-# Getting Started
+# Welcome
 
-Welcome to your new project.
+This project is developed for the purpose of private partner bootcamp. Participants may clone the repository, install/build & run on your local environment or SAP Business Application Studio. It is a use case to illustrate a simple bookshop management solution extended to S/4HANA Cloud with SAP Cloud SDK. _**Prior to this, make sure you've the right knowledge of [CAP](https://cap.cloud.sap/) and attended the bootcamp session.**_
 
-It contains these folders and files, following our recommended project layout:
-
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
-
-![Use Case for this Project](Use Case.png)
+## Use Case Scenario
+![Use Case for this Project](https://github.com/jacobtan89/bootcamp-cap-bookshop/blob/master/Use%20Case.png?raw=true)
 
 
-## Next Steps
+## Run it with 3 Simple Steps
+1. Clone these files & folders into a bookshop folder.
+```bash
+git clone https://github.com/jacobtan89/bootcamp-cap-bookshop.git bookshop
+```
+2. Navigate into the _**bookshop**_ folder & install the _**required npm dependencies**_ declared in the package.json. (takes about a few minutes)
+```bash
+cd bookshop
+npm install
+```
+3. Run it with `cds watch`
+```bash
+cds watch
+```
 
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+If you face a problem with the example application or the description, feel free to create an [issue](https://github.com/jacobtan89/bootcamp-cap-bookshop/issues).
+
+[![REUSE status](https://api.reuse.software/badge/github.com/jacobtan89/bootcamp-cap-bookshop)](https://api.reuse.software/badge/github.com/jacobtan89/bootcamp-cap-bookshop)
 
 
 ## Learn More
 
-Learn more at https://cap.cloud.sap/docs/get-started/.
+Learn more about the core concepts at [SAP Developer Tutorials on CAP Topic](https://developers.sap.com/tutorial-navigator.html?tag=software-product-function:sap-cloud-application-programming-model).
