@@ -12,6 +12,8 @@ File or Folder | Purpose
 `package.json` | project metadata and configuration
 `readme.md` | this getting started guide
 
+![Use Case for this Project](Use Case.png)
+
 
 ## Next Steps
 
