@@ -1,30 +1,53 @@
 # Welcome
 
-This project is developed for the purpose of private partner bootcamp. Participants may clone the repository, install/build & run on your local environment or SAP Business Application Studio. It is a use case to illustrate a simple bookshop management solution extended to S/4HANA Cloud with SAP Cloud SDK. _**Prior to this, make sure you've the right knowledge of [CAP](https://cap.cloud.sap/) and attended the bootcamp session.**_
+This project is developed for the purpose of private partner bootcamp. Participants may clone the repository, install/build & run on your local environment or the SAP Business Application Studio. It is a use case to illustrate a simple bookshop management solution extended to S/4HANA Cloud with SAP Cloud SDK. _**To deploy this successful, please make sure you've the prior knowledge of [CAP](https://cap.cloud.sap/) and attended the bootcamp session.**_ 
 
 ## Use Case Scenario
 ![Use Case for this Project](https://github.com/jacobtan89/bootcamp-cap-bookshop/blob/master/Use%20Case.png?raw=true)
 
+## Pre-requisites Check
+node
+npm
+cf cli
+cf plugins multiapps
+mta
+mbt
+cds
 
-## Run it with 3 Simple Steps
-1. Clone these files & folders into a bookshop folder.
+
+## Setting Up in your Environment
+1. Clone into a bookshop folder.
 ```bash
 git clone https://github.com/jacobtan89/bootcamp-cap-bookshop.git bookshop
 ```
-2. Navigate into the _**bookshop**_ folder & install the _**required npm dependencies**_ declared in the package.json. (takes about a few minutes)
+2. Navigate into the _**bookshop**_ folder & install the _**required npm dependencies**_ declared in the package.json (takes about a few minutes).
 ```bash
 cd bookshop
 npm install
 ```
-3. Run it with `cds watch`
+3. Run it with `cds watch` in your bookshop folder.
 ```bash
 cds watch
 ```
 
+4. `(Optional)` Connecting to your S/4 HANA Cloud System, please follow these steps.
+* Create a destination in your SAP BTP account, pointing to your S/4 HANA Cloud system.
+> Destination Name: `S4HC` 
+
+> Destination URL: https://`<tenant>`.s4hana.ondemand.com
+
+_Please note that the above destination name `S4HC` will be used in the Custom Logic file `Line 3` located in [srv/admin-service.js](srv/admin-service.js)._
+In order to connect your app with the destination defined in your SAP BTP account, you can either create a local file `default-env.json` in your bookshop folder with the `destination` & `xsuaa` service key credentials **OR** simply just run everything in the cloud by packaging with MTA, build and deploy.
+
+5. Package & Build with MTA then Deploy in your SAP BTP account.
+- In your bookshop folder, package your app with the MTA Build Tool.
+```bash
+mbt build -t ./
+```
+- 
+b)
+
 If you face a problem with the example application or the description, feel free to create an [issue](https://github.com/jacobtan89/bootcamp-cap-bookshop/issues).
-
-[![REUSE status](https://api.reuse.software/badge/github.com/jacobtan89/bootcamp-cap-bookshop)](https://api.reuse.software/badge/github.com/jacobtan89/bootcamp-cap-bookshop)
-
 
 ## Learn More
 

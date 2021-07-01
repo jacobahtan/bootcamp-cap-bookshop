@@ -1,6 +1,6 @@
 const cds = require('@sap/cds');
 const { BusinessPartner } = require("@sap/cloud-sdk-vdm-business-partner-service");
-const sdkDest = { "destinationName": 'S4_JT' };
+const sdkDest = { "destinationName": 'S4HC' };
 const {
     buildBusinessPartnerForCreate,
     formatBPResultsForCAPOData
