@@ -14,7 +14,7 @@ GET {{server}}/browse/Books?
 # &sap-language=de
 
 ### Browsing Authors
-GET {{server}}/admin/Authors?
+GET {{server}}/manage/Authors?
 # &$select=name,dateOfBirth,placeOfBirth
 # &$expand=books($select=title;$expand=currency)
 # &$filter=ID eq 101
