@@ -40,7 +40,7 @@ entity Genres : sap.common.CodeList {
 }
 
 entity Customers {
-    key BusinessPartner         : String;
+    key BusinessPartner         : UUID;
         LastName                : String;
         FirstName               : String;
         Industry                : String;

@@ -6,8 +6,8 @@ const _prepareBpBody = (bp) => {
         businessPartnerCategory: bp.BusinessPartnerCategory
     }
 }
-const buildBusinessPartnerForCreate = (req) => {
-    const bp = BusinessPartner.builder().fromJson(_prepareBpBody(req.data));
+const buildBusinessPartnerForCreate = (data) => {
+    const bp = BusinessPartner.builder().fromJson(_prepareBpBody(data));
     return bp;
 }
 function formatBPResultsForCAPOData(businessPartners) {

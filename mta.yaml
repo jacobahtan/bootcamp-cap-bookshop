@@ -9,6 +9,7 @@ modules:
     requires:
       - name: bookshop-db
       - name: uaa_bookshop
+      - name: bookshop-destination-service
     parameters:
       host: ${appname}
     provides:
@@ -125,7 +126,7 @@ resources:
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
-  appname: bookcatalog-bootcamp
+  appname: bookcatalog-<REPLACE_THIS_WITH_SUBDOMAIN>
 build-parameters:
   before-all:
     - builder: custom

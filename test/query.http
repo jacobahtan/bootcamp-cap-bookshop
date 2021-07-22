@@ -53,7 +53,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-"FirstName": "Amazon",
-"LastName": "Bootcamp",
-"BusinessPartnerCategory":"1"
+    "FirstName": "Amazon (c58d60d8trial) - 1",
+    "LastName": "Bootcamp",
+    "BusinessPartnerCategory":"1"
 }
