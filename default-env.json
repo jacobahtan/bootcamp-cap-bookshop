@@ -1,0 +1,33 @@
+{
+    "VCAP_SERVICES": {
+        "hana": [
+            {
+                "name": "<SERVICE_NAME>",
+                "tags": [
+                    "hana"
+                ],
+                "credentials": <PASTE_JSON_CREDENTIALS_HERE>
+            }
+        ],
+        "destination": [
+            {
+                "name": "<SERVICE_NAME>",
+                "label": "destination",
+                "tags": [
+                    "destination"
+                ],
+                "credentials": <PASTE_JSON_CREDENTIALS_HERE>
+            }
+        ],
+        "xsuaa": [
+            {
+                "name": "<SERVICE_NAME>",
+                "label": "xsuaa",
+                "tags": [
+                    "xsuaa"
+                ],
+                "credentials": <PASTE_JSON_CREDENTIALS_HERE>
+            }
+        ]
+    }
+}

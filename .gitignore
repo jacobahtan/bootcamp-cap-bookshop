@@ -2,7 +2,6 @@
 _out
 *.db
 connection.properties
-default-*.json
 gen/
 node_modules/
 target/
@@ -27,9 +26,6 @@ mta_archives/
 # IDEs
 # .vscode
 # .idea
-
-# added by cds deploy
-default-env.json
 
 # Node
 package-lock.json
