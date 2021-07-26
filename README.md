@@ -117,6 +117,22 @@ To run it locally and connect with SAP BTP services, you'd need to create a loca
 </details>
 <p></p>
 
+<p></p>
+<details>
+  <summary>Supplement Topic: (Not Required) How to Undeploy MTA from my SAP BTP Account.</summary>
+<p></p>
+
+There are situations where you would required to redeploy a new version of MTA or met with an issue, for example change of database structure that requires to redeploy your SAP HANA Cloud DB, why not just undeploy the entire MTA solution and run end-to-end deployment again.
+```bash
+cf mtas
+cf undeploy bookshop --delete-services --delete-service-keys
+```
+
+![Undeploy MTA](https://user-images.githubusercontent.com/8436161/127018607-e33b456e-9c77-47ca-85b9-d57ed885a15d.gif)
+
+</details>
+<p></p>
+
 
 
 `(Optional)` **Step 5:** Connecting to your S/4 HANA Cloud System, please follow these steps.
