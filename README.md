@@ -141,11 +141,20 @@ If you face a problem with the example application or the description, feel free
 
 ## Common Issues Faced
 >MBT build Error: could not build the MTA project: could not execute the "make -f Makefile_20210721132444.mta p=cf mtar= strict=true mode= t=\"./\"" command: exec: "make": executable file not found in %PATH%
+
+The make tool is required by the mbt tool. Linux and macOS are already shipped with make. For Windows you can download it from the GNU Make site:
+
+Go to http://gnuwin32.sourceforge.net/packages/make.htm.
+Choose the download with the description Complete package, except sources.
+Run the installer.
+Enter Edit the System Environment Variables in the Windows search box (Windows icon in the task bar). The System Properties dialog is opened.
+Choose Environment Variables….
+Choose your Path environment variable under User Variables for <your_user_name> and choose Edit.
+Choose Browse and navigate to GNU make (usually C:\Program Files (x86)\GnuWin32\bin).
+Click OK to add GNU make to your Path environment variable.
+Restart VS Code to make the change effective.
+
 - The problem is that you do not have the GNU Make 4.2.1 (min version) installed in your local environment, which is a dependency of the MTA Build Tool. Please, refer to the Prerequisites section of this link from the Help Portal: https://help.sap.com/viewer/c2b99f19e9264c4d9ae9221b22f6f589/2020_04_QRC/en-US/1412120094534a23b1a894bc498c2767.html
-
-- As it's a GNU command the best way of having it installed in your system is through chocolately (https://chocolatey.org/install) and then do:
-`choco install make`
-
 >SAP HANA Cloud Issues. DB Deployer Crashed. Execution of task "deploy" on application "bookshop-db-deployer" failed. Connection failed. Socket closed by peer.
 - Make sure your SAP HANA Cloud service in your SAP BTP Trial account is up & running.
 - Usually the service will be switched off automatically daily.
