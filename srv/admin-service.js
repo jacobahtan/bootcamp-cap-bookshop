@@ -11,7 +11,7 @@ module.exports = cds.service.impl(async function () {
     const { Customers } = this.entities;
     const { Books, Orders } = cds.entities
 
-    this.after('CREATE', Customers, async (data) => {
+    this.after('CREATE', Customers, async (data, req) => {
         /**
          * [IMPORTANT NOTE]
          * - The following logic below creates BP in S4HANA & a Customer record in your CAP Data Model.
@@ -19,8 +19,15 @@ module.exports = cds.service.impl(async function () {
          * - Based on the use case or right logic, ONLY 1 source of truth should be maintained, which should be S4.
          *
          * - TODO: Improve logic to achieve creation of BP ONLY in S4HANA.
+         * Please note that below is a quick workaround to rollback the transaction on POST Customer into CAP Data Model.
          * 
          */
+
+        // Undo the default CREATE operation from the CDS CRUD default generic handler
+        // NOTE: here a pre-defined attribute can be checked to determine whether to stick with CDS or go with S4
+        cds.tx(req).rollback();
+
+        // Create BP in S/4HANA
         try {
             const bp = buildBusinessPartnerForCreate(data);
             const result = await BusinessPartner
@@ -51,7 +58,7 @@ module.exports = cds.service.impl(async function () {
         // return formatBPResultsForCAPOData(s4bp);
         /** [END] */
 
-        
+
         /** [START] SCENARIO B
         * Connect with Cloud SDK to S4 to retrieve ALL customers
         * Match customers with existing orders in Bookshop
