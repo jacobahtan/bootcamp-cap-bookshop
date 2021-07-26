@@ -9,6 +9,7 @@ const {
 //here are the service handlers
 module.exports = cds.service.impl(async function () {
     const { Customers } = this.entities;
+    // Not required for now
     const { Books, Orders } = cds.entities
 
     this.after('CREATE', Customers, async (data, req) => {
