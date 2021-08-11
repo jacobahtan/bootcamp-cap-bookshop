@@ -10,8 +10,6 @@ This project is developed for the purpose of a organised partner bootcamp. Parti
 ## Pre-requisites
 Regardless whether you're using Visual Studio code or (`recommended`) SAP Business Application Studio, please ensure you have these components installed & setup in your local environment.
 
-And please make sure you have both of these SAP BTP services setup successfully in your BTP trial account: `(1) SAP HANA Cloud & (2) SAP Launchpad Service`.
-
 > Check the following (line-by-line) command if they have already been installed, if not, install them with the respective commands below.
 
 <p></p>
@@ -53,6 +51,12 @@ npm install -g mbt
 cf install-plugin multiapps
 ```
 
+And please make sure you have both of these SAP BTP services setup successfully in your BTP trial account: 
+
+`(1) SAP HANA Cloud` from SAP BTP Cockpit > Cloud Foundry > Spaces > dev > SAP HANA Cloud (make sure you select the option to "Allow ALL IP Addresses" during creation).
+![SAP BTP HANA Cloud](https://user-images.githubusercontent.com/8436161/128988191-f079627d-59c3-4015-a689-d4933613ba41.png)
+`(2) SAP Launchpad Service` from SAP BTP Cockpit > Services > Instances & Subscriptions > Create > SAP Launchpad Service. 
+![SAP BTP Launchpad Service](https://user-images.githubusercontent.com/8436161/128988248-0714b16f-48f1-4ec3-8e50-d72317019a06.png)
 
 
 ## Let's Get Started
