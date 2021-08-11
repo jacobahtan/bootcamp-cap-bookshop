@@ -66,6 +66,9 @@
     },
     "hana": {
       "deploy-format": "hdbtable"
+    },
+    "features": {
+      "fiori_preview": "true"
     }
   }
 }

@@ -5,13 +5,14 @@ const {
     buildBusinessPartnerForCreate,
     formatBPResultsForCAPOData
 } = require('./helper');
-//here is the service implementation
-//here are the service handlers
-module.exports = cds.service.impl(async function () {
-    const { Customers } = this.entities;
-    // Not required for now
-    const { Books, Orders } = cds.entities
 
+module.exports = cds.service.impl(async function () {
+    // Get the reflected entities defined in schema.cds defined 
+    // You may expose other entities if you'd like to manipulate its events
+    // e.g. const { Customers, Orders, Books } = this.entities;
+    const { Customers } = this.entities;
+
+    // Hook on Create event
     this.after('CREATE', Customers, async (data, req) => {
         /**
          * [IMPORTANT NOTE]
@@ -41,7 +42,7 @@ module.exports = cds.service.impl(async function () {
         }
     });
 
-    this.on('READ', Customers, async (req) => {
+    this.on('READ', Customers, async () => {
         /** [START] SCENARIO A
         * Connect with Cloud SDK to S4 to retrieve ALL customers
         * Return results as ALL customers.
