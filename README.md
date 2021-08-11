@@ -7,8 +7,10 @@ This project is developed for the purpose of a organised partner bootcamp. Parti
 ## Use Case Scenario
 ![Use Case Story](https://user-images.githubusercontent.com/8436161/126598515-e6696f32-0504-4ecf-b5d2-1dda86e37f36.png?raw=true)
 
-## Pre-requisites Check
+## Pre-requisites
 Regardless whether you're using Visual Studio code or (`recommended`) SAP Business Application Studio, please ensure you have these components installed & setup in your local environment.
+
+And please make sure you have both of these SAP BTP services setup successfully in your BTP trial account: `(1) SAP HANA Cloud & (2) SAP Launchpad Service`.
 
 > Check the following (line-by-line) command if they have already been installed, if not, install them with the respective commands below.
 
@@ -50,6 +52,8 @@ npm install -g mta
 npm install -g mbt
 cf install-plugin multiapps
 ```
+
+
 
 ## Let's Get Started
 **Step 1:** Clone this Git Repo into a `bookshop` project folder.
