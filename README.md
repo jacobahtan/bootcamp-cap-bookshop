@@ -100,8 +100,13 @@ cf deploy bookshop_1.0.0.mtar
 
 `(Full Cloud experience in SAP BTP)` Run & Test your solution that is up & running hosted in your SAP BTP Trial Account.
 - **i) Service App** (`bookshop-srv`): Navigate from your SAP BTP Account > Cloud Foundry > Spaces > Applications > bookshop-srv
+![CF Applications](https://user-images.githubusercontent.com/8436161/128989726-9cd8013d-8873-4b41-b5d1-85c47bd52e1d.png)
 - **ii) UI App** (`catalog`): Navigate from your SAP BTP Account > HTML5 Applications > catalog
+![HTML5 Applications](https://user-images.githubusercontent.com/8436161/128989801-72e24218-43af-456b-8f09-2f0658fa770d.png)
 - **iii) Database** (`bookshop-db`): Navigate from your SAP BTP Account > Cloud Foundry > Spaces > SAP HANA Cloud > Manage SAP HANA Cloud > Start > Open in SAP HANA Database Explorer > Add HANA DB ( + ) > Choose bookshop-db in the list > Explore Catalog > Table > Open SAP_CAPIRE_BOOKSHOP_BOOKS > Check if data exists in the table.
+![HANA Cloud Manage](https://user-images.githubusercontent.com/8436161/128989853-d1c09fb1-ca48-41aa-a6c9-ee2d25cfbe46.png)
+![HANA Cloud Add DB](https://user-images.githubusercontent.com/8436161/128989871-d9371455-9b7f-4132-aecc-b8cc1ae1edc6.png)
+![HANA Cloud View DB Table](https://user-images.githubusercontent.com/8436161/128989887-7dbc61f8-9f12-4440-99bd-1eaf2b72de60.png)
 > If the above full cloud experience is working perfectly fine, `Congratulations!` You've successfully deployed the solution stack in SAP BTP! You may skip below supplement step.
 
 <p></p>
