@@ -16,6 +16,7 @@ entity Books : managed {
         stock    : Integer;
         price    : Decimal(9, 2);
         currency : Currency;
+        image_url : String;
 }
 
 entity Authors : managed {
@@ -40,11 +41,13 @@ entity Genres : sap.common.CodeList {
 }
 
 entity Customers {
-    key BusinessPartner         : UUID;
+    key BusinessPartner         : String;
         LastName                : String;
         FirstName               : String;
         Industry                : String;
         BusinessPartnerCategory : String;
+        FullName                : String;
+        PersonNumber            : String;
 }
 
 entity Orders : cuid, managed {
@@ -52,6 +55,7 @@ entity Orders : cuid, managed {
     Items    : Composition of many OrderItems
                    on Items.parent = $self;
     customer : String;
+    status   : String;
     total    : Decimal(9, 2)@readonly;
     currency : Currency;
 }
