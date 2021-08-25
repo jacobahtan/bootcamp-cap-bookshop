@@ -43,8 +43,9 @@ GET {{server}}/manage/Orders?
 ###
 # GET a list of Business Partners
 # Scenario A or B
-###Ï
+###
 GET {{server}}/manage/Customers
+
 ###
 # POST a specific Business Partner
 ###
@@ -53,7 +54,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "FirstName": "Amazon (c58d60d8trial) - 1",
+    "BusinessPartner": "123",
+    "FirstName": "amazonjt",
     "LastName": "Bootcamp",
     "BusinessPartnerCategory":"1"
 }

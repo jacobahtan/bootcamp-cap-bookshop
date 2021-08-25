@@ -19,7 +19,9 @@ function formatBPResultsForCAPOData(businessPartners) {
                 FirstName: businessPartner.firstName,
                 LastName: businessPartner.lastName,
                 Industry: businessPartner.Industry,
-                BusinessPartnerCategory: businessPartner.businessPartnerCategory
+                BusinessPartnerCategory: businessPartner.businessPartnerCategory,
+                FullName: businessPartner.businessPartnerFullName,
+                PersonNumber: businessPartner.personNumber
             });
     });
     return jsonFormatForCAPOdataBP;

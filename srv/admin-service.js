@@ -73,18 +73,23 @@ module.exports = cds.service.impl(async function () {
             .getAll()
             .select(
                 BusinessPartner.BUSINESS_PARTNER,
+                BusinessPartner.BUSINESS_PARTNER_FULL_NAME,
                 BusinessPartner.FIRST_NAME,
                 BusinessPartner.LAST_NAME,
+                BusinessPartner.PERSON_NUMBER,
                 BusinessPartner.INDUSTRY,
                 BusinessPartner.BUSINESS_PARTNER_CATEGORY)
             .execute(sdkDest);
+        // console.log(JSON.stringify(s4bp));
         var bp = formatBPResultsForCAPOData(s4bp);
         for (let i = 0; i < bp.length; i++) {
             var cust = bp[i].BusinessPartner
+            console.log(JSON.stringify(bp[i]));
             for (let k = 0; k < bookshopOrders.length; k++) {
                 if (cust == bookshopOrders[k].customer) {
                     // BP is Bookshop Customer
-                    bookshopCustomers.push(bp[i]);
+                    var x = {"FirstName": bp[i].FirstName,"LastName": bp[i].LastName,"FullName": bp[i].FullName,"PersonNumber": bp[i].PersonNumber};
+                    bookshopCustomers.push(x);
                 }
             }
         }

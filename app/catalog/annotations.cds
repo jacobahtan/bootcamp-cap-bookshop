@@ -1,13 +1,13 @@
 using CatalogService from '../../srv/cat-service';
 
-////////////////////////////////////////////////////////////////////////////
-//
-// Books Object Detail Page
-//
+/**
+ * Book Related Annotations
+ */
 annotate CatalogService.Books with @(UI : {
     HeaderInfo        : {
         TypeName       : '{i18n>Book}',
         TypeNamePlural : '{i18n>Books}',
+        Title          : {Value : title},
         Description    : {Value : author}
     },
     HeaderFacets      : [{
@@ -20,36 +20,39 @@ annotate CatalogService.Books with @(UI : {
         Label  : '{i18n>Details}',
         Target : '@UI.FieldGroup#Price'
     }, ],
-    FieldGroup #Descr : {Data : [{Value : descr}, ]},
+    FieldGroup #Descr : {Data : [
+        {Value : image_url},
+        {Value : descr}
+    ]},
     FieldGroup #Price : {Data : [
         {Value : price},
         {
             Value : currency.symbol,
             Label : '{i18n>Currency}'
         },
+        {Value : stock}
     ]},
 });
 
-////////////////////////////////////////////////////////////////////////////
-//
-// Books Object Master List Page
-//
 annotate CatalogService.Books with @(UI : {
     SelectionFields : [
         ID,
+        author,
         price,
         currency_code
     ],
     LineItem        : [
+        {Value : image_url},
         {Value : title},
         {
             Value : author,
-            Label : '{i18n>Author}'
+            Label : '{i18n>authorName}'
         },
+        {Value : stock},
         {Value : price},
         {
             Value : currency.symbol,
             Label : ' '
-        },
+        }
     ]
-}, );
+});
