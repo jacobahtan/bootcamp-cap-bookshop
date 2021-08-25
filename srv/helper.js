@@ -10,6 +10,7 @@ const buildBusinessPartnerForCreate = (data) => {
     const bp = BusinessPartner.builder().fromJson(_prepareBpBody(data));
     return bp;
 }
+
 function formatBPResultsForCAPOData(businessPartners) {
     const jsonFormatForCAPOdataBP = [];
     businessPartners.forEach(businessPartner => {
@@ -26,7 +27,18 @@ function formatBPResultsForCAPOData(businessPartners) {
     });
     return jsonFormatForCAPOdataBP;
 }
+
+function cleanJsonDuplicates(arr) {
+    var cleaned = new Map();
+    arr.forEach(function (item) {
+        cleaned.set(JSON.stringify(item), item);
+    });
+
+    return [...cleaned.values()];
+}
+
 module.exports = {
     buildBusinessPartnerForCreate,
-    formatBPResultsForCAPOData
+    formatBPResultsForCAPOData,
+    cleanJsonDuplicates
 }

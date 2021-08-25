@@ -3,7 +3,8 @@ const { BusinessPartner } = require("@sap/cloud-sdk-vdm-business-partner-service
 const sdkDest = { "destinationName": 'S4HC' };
 const {
     buildBusinessPartnerForCreate,
-    formatBPResultsForCAPOData
+    formatBPResultsForCAPOData,
+    cleanJsonDuplicates
 } = require('./helper');
 
 module.exports = cds.service.impl(async function () {
@@ -84,16 +85,17 @@ module.exports = cds.service.impl(async function () {
         var bp = formatBPResultsForCAPOData(s4bp);
         for (let i = 0; i < bp.length; i++) {
             var cust = bp[i].BusinessPartner
-            console.log(JSON.stringify(bp[i]));
+            // console.log(JSON.stringify(bp[i]));
             for (let k = 0; k < bookshopOrders.length; k++) {
                 if (cust == bookshopOrders[k].customer) {
                     // BP is Bookshop Customer
-                    var x = {"FirstName": bp[i].FirstName,"LastName": bp[i].LastName,"FullName": bp[i].FullName,"PersonNumber": bp[i].PersonNumber};
+                    var x = { "FirstName": bp[i].FirstName, "LastName": bp[i].LastName, "FullName": bp[i].FullName, "PersonNumber": bp[i].PersonNumber };
                     bookshopCustomers.push(x);
                 }
             }
         }
-        return bookshopCustomers;
+
+        return cleanJsonDuplicates(bookshopCustomers);
 
         /** [END] */
     });
