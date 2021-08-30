@@ -89,7 +89,7 @@ module.exports = cds.service.impl(async function () {
             for (let k = 0; k < bookshopOrders.length; k++) {
                 if (cust == bookshopOrders[k].customer) {
                     // BP is Bookshop Customer
-                    var x = { "FirstName": bp[i].FirstName, "LastName": bp[i].LastName, "FullName": bp[i].FullName, "PersonNumber": bp[i].PersonNumber };
+                    var x = { "BusinessPartner": bp[i].BusinessPartner, "FirstName": bp[i].FirstName, "LastName": bp[i].LastName, "FullName": bp[i].FullName, "PersonNumber": bp[i].PersonNumber };
                     bookshopCustomers.push(x);
                 }
             }
