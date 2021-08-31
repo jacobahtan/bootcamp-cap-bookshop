@@ -1,5 +1,9 @@
 @server = http://localhost:4004
+# @server = https://bookcatalog-c58d60d8trial.cfapps.us10.hana.ondemand.com
 @me = Authorization: Basic {{$processEnv USER}}:
+
+### ------------------------------------------------------------------------
+### Service Metadata Origin
 
 ### Service Document
 GET {{server}}/browse
@@ -7,11 +11,17 @@ GET {{server}}/browse
 ### Service $metadata document
 GET {{server}}/browse/$metadata
 
+### ------------------------------------------------------------------------
+### Books Management
+
 ### Browsing Books
 GET {{server}}/browse/Books?
 # &$select=title,author
 # &$expand=currency
 # &sap-language=de
+
+### ------------------------------------------------------------------------
+### Authors Management
 
 ### Browsing Authors
 GET {{server}}/manage/Authors?
@@ -35,10 +45,19 @@ GET {{server}}/browse/Books(201)
 # &sap-language=de
 ### Browsing Authors
 
+### Deep Expansion
+GET {{server}}/manage/Orders?$expand=Items($expand=book)
+
+### ------------------------------------------------------------------------
+### Orders Management
+
 ###
 # Get Orders
-GET {{server}}/manage/Orders?
+GET {{server}}/manage/Orders?$filter=customer eq '1000175'
 # &$expand=Items
+
+### ------------------------------------------------------------------------
+### Customers Management
 
 ###
 # GET a list of Business Partners
@@ -55,7 +74,7 @@ Accept: application/json
 
 {
     "BusinessPartner": "123",
-    "FirstName": "amazonjt",
+    "FirstName": "amazonjt2",
     "LastName": "Bootcamp",
     "BusinessPartnerCategory":"1"
 }

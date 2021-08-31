@@ -8,14 +8,14 @@ using {
 namespace sap.capire.bookshop;
 
 entity Books : managed {
-    key ID       : Integer;
-        title    : localized String(111);
-        descr    : localized String(1111);
-        author   : Association to Authors;
-        genre    : Association to Genres;
-        stock    : Integer;
-        price    : Decimal(9, 2);
-        currency : Currency;
+    key ID        : Integer;
+        title     : localized String(111);
+        descr     : localized String(1111);
+        author    : Association to Authors;
+        genre     : Association to Genres;
+        stock     : Integer;
+        price     : Decimal(9, 2);
+        currency  : Currency;
         image_url : String;
 }
 
@@ -50,14 +50,15 @@ entity Customers {
         PersonNumber            : String;
 }
 
-entity Orders : cuid, managed {
-    OrderNo  : String       @title : 'Order Number'; //> readable key
-    Items    : Composition of many OrderItems
-                   on Items.parent = $self;
-    customer : String;
-    status   : String;
-    total    : Decimal(9, 2)@readonly;
-    currency : Currency;
+entity Orders : managed {
+    key ID       : String;
+        OrderNo  : String       @title : 'Order Number'; //> readable key
+        Items    : Composition of many OrderItems
+                       on Items.parent = $self;
+        customer : String;
+        status   : String;
+        total    : Decimal(9, 2)@readonly;
+        currency : Currency;
 }
 
 entity OrderItems : cuid {
