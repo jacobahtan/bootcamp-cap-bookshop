@@ -41,7 +41,7 @@ entity Genres : sap.common.CodeList {
 }
 
 entity Customers {
-    key BusinessPartner         : String;
+    key BusinessPartner         : UUID;
         LastName                : String;
         FirstName               : String;
         Industry                : String;
@@ -50,8 +50,7 @@ entity Customers {
         PersonNumber            : String;
 }
 
-entity Orders : managed {
-    key ID       : String;
+entity Orders : cuid, managed {
         OrderNo  : String       @title : 'Order Number'; //> readable key
         Items    : Composition of many OrderItems
                        on Items.parent = $self;
