@@ -73,8 +73,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "BusinessPartner": "123",
-    "FirstName": "amazonjt2",
+    "BusinessPartner": "fb1d21f9-0374-44ea-b45f-4a23ac4fcab2",
+    "FirstName": "amazonjt23",
     "LastName": "Bootcamp",
     "BusinessPartnerCategory":"1"
 }

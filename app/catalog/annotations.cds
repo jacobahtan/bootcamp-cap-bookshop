@@ -1,5 +1,9 @@
 using CatalogService from '../../srv/cat-service';
 
+
+// Default CRUD operations automated for OData V4
+annotate CatalogService.Books with @odata.draft.enabled;
+
 /**
  * Book Related Annotations
  */

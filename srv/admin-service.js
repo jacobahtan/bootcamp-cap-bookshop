@@ -4,7 +4,8 @@ const sdkDest = { "destinationName": 'S4HC' };
 const {
     buildBusinessPartnerForCreate,
     formatBPResultsForCAPOData,
-    cleanJsonDuplicates
+    cleanJsonDuplicates,
+    convert2CDSFormat
 } = require('./helper');
 
 module.exports = cds.service.impl(async function () {
@@ -15,6 +16,7 @@ module.exports = cds.service.impl(async function () {
 
     // Hook on Create event
     this.after('CREATE', Customers, async (data, req) => {
+    // this.after('CREATE', Customers, async (data) => {
         /**
          * [IMPORTANT NOTE]
          * - The following logic below creates BP in S4HANA & a Customer record in your CAP Data Model.
@@ -26,6 +28,7 @@ module.exports = cds.service.impl(async function () {
          * 
          */
 
+        // Requirement: ONLY create BP in S4HC to uphold a single source of truth, thus rollback CDS (SAP HANA CLOUD) txn.
         // Undo the default CREATE operation from the CDS CRUD default generic handler
         // NOTE: here a pre-defined attribute can be checked to determine whether to stick with CDS or go with S4
         cds.tx(req).rollback();
@@ -37,7 +40,8 @@ module.exports = cds.service.impl(async function () {
                 .requestBuilder()
                 .create(bp)
                 .execute(sdkDest);
-            return result;
+            // return result;
+            return convert2CDSFormat(result);
         } catch (err) {
             return err;
         }

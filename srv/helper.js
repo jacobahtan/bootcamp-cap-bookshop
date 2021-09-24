@@ -37,8 +37,18 @@ function cleanJsonDuplicates(arr) {
     return [...cleaned.values()];
 }
 
+function convert2CDSFormat(businessPartner) {
+    return {
+        BusinessPartner: businessPartner.businessPartner,
+        FirstName: businessPartner.firstName,
+        LastName: businessPartner.lastName,
+        BusinessPartnerCategory: businessPartner.businessPartnerCategory
+    };
+}
+
 module.exports = {
     buildBusinessPartnerForCreate,
     formatBPResultsForCAPOData,
-    cleanJsonDuplicates
+    cleanJsonDuplicates,
+    convert2CDSFormat
 }
