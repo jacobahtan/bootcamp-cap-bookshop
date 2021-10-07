@@ -126,7 +126,7 @@ resources:
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
-  appname: bookcatalog-<REPLACE_THIS_WITH_SUBDOMAIN>
+  appname: bookcatalog-8221c96ftrial
 build-parameters:
   before-all:
     - builder: custom
