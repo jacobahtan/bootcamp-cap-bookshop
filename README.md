@@ -1,6 +1,6 @@
 # Bookshop Solution for SAP BTP Developer Bootcamp
 
-This project is developed for the purpose of a organised partner bootcamp. Participants may clone the repository, install/build & run on your local environment or (`recommended`) SAP Business Application Studio. It is a use case to illustrate a simple bookshop management solution extended to S/4HANA Cloud with SAP Cloud SDK. _**To deploy this successful, please make sure you've the prior knowledge of [CAP](https://cap.cloud.sap/) and HAVE attended the bootcamp session.**_ 
+This project is developed for the purpose of an organised partner bootcamp. Participants may clone the repository, install/build & run on your local environment or (`recommended`) SAP Business Application Studio. It is a use case to illustrate a simple bookshop management solution extended to S/4HANA Cloud with SAP Cloud SDK. _**To deploy this successful, please make sure you've the prior knowledge of [CAP](https://cap.cloud.sap/) and HAVE attended the bootcamp session.**_ 
 
 > Please note that even though S/4HANA Cloud is not a mandatory component, please adjust the code accordingly if you'd like to extend this use case further without S/4HANA Cloud. This project is developed with the intention to extend S/4HANA Cloud.
 
