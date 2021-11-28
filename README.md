@@ -1,4 +1,4 @@
-# Bookshop Solution for SAP BTP Developer Bootcamp - CAP
+# Bookshop Solution for SAP BTP Developer Bootcamp - SAP Cloud Application Programming Model
 
 This project is developed for the purpose of an organised partner bootcamp. Participants may clone the repository, install/build & run on your local environment or (`recommended`) SAP Business Application Studio. It is a use case to illustrate a simple bookshop management solution extended to S/4HANA Cloud with SAP Cloud SDK. _**To deploy this successful, please make sure you've the prior knowledge of [CAP](https://cap.cloud.sap/) and HAVE attended the bootcamp session.**_ 
 
