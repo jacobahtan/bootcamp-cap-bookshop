@@ -195,4 +195,4 @@ Learn more about the core concepts at [SAP Developer Tutorials on CAP Topic](
 
 ## License
 
-Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](/LICENSE) file.
+Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](/LICENSE) file.
