@@ -1,5 +1,6 @@
 const cds = require('@sap/cds');
-const { BusinessPartner } = require("@sap/cloud-sdk-vdm-business-partner-service");
+const { businessPartnerService } = require('@sap/cloud-sdk-vdm-business-partner-service');
+const { businessPartnerApi } = businessPartnerService();
 const sdkDest = { "destinationName": 'S4HC' };
 const {
     buildBusinessPartnerForCreate,
@@ -31,16 +32,17 @@ module.exports = cds.service.impl(async function () {
         // Requirement: ONLY create BP in S4HC to uphold a single source of truth, thus rollback CDS (SAP HANA CLOUD) txn.
         // Undo the default CREATE operation from the CDS CRUD default generic handler
         // NOTE: here a pre-defined attribute can be checked to determine whether to stick with CDS or go with S4
-        cds.tx(req).rollback();
+        const tx = cds.tx(req);
 
         // Create BP in S/4HANA
         try {
             const bp = buildBusinessPartnerForCreate(data);
-            const result = await BusinessPartner
+            const result = await businessPartnerApi
                 .requestBuilder()
                 .create(bp)
                 .execute(sdkDest);
             // return result;
+            tx.rollback();
             return convert2CDSFormat(result);
         } catch (err) {
             return err;
@@ -74,16 +76,16 @@ module.exports = cds.service.impl(async function () {
 
         const bookshopOrders = await cds.read('Orders');
         const bookshopCustomers = [];
-        const s4bp = await BusinessPartner.requestBuilder()
+        const s4bp = await businessPartnerApi.requestBuilder()
             .getAll()
             .select(
-                BusinessPartner.BUSINESS_PARTNER,
-                BusinessPartner.BUSINESS_PARTNER_FULL_NAME,
-                BusinessPartner.FIRST_NAME,
-                BusinessPartner.LAST_NAME,
-                BusinessPartner.PERSON_NUMBER,
-                BusinessPartner.INDUSTRY,
-                BusinessPartner.BUSINESS_PARTNER_CATEGORY)
+                businessPartnerApi.schema.BUSINESS_PARTNER,
+                businessPartnerApi.schema.BUSINESS_PARTNER_FULL_NAME,
+                businessPartnerApi.schema.FIRST_NAME,
+                businessPartnerApi.schema.LAST_NAME,
+                businessPartnerApi.schema.PERSON_NUMBER,
+                businessPartnerApi.schema.INDUSTRY,
+                businessPartnerApi.schema.BUSINESS_PARTNER_CATEGORY)
             .execute(sdkDest);
         // console.log(JSON.stringify(s4bp));
         var bp = formatBPResultsForCAPOData(s4bp);

@@ -1,4 +1,5 @@
-const { BusinessPartner } = require("@sap/cloud-sdk-vdm-business-partner-service");
+const { businessPartnerService } = require("@sap/cloud-sdk-vdm-business-partner-service");
+const { businessPartnerApi } = businessPartnerService();
 const _prepareBpBody = (bp) => {
     return {
         firstName: bp.FirstName,
@@ -7,7 +8,7 @@ const _prepareBpBody = (bp) => {
     }
 }
 const buildBusinessPartnerForCreate = (data) => {
-    const bp = BusinessPartner.builder().fromJson(_prepareBpBody(data));
+    const bp = businessPartnerApi.entityBuilder().fromJson(_prepareBpBody(data));
     return bp;
 }
 
