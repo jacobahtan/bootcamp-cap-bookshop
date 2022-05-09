@@ -1,6 +1,6 @@
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: bookshop
-description: 'Bookshop CAP Project for Catalog & Admin users.'
+description: "Bookshop CAP Project for Catalog & Admin users."
 version: 1.0.0
 modules:
   - name: bookshop-srv
@@ -8,14 +8,14 @@ modules:
     path: gen/srv
     requires:
       - name: bookshop-db
-      - name: uaa_bookshop
       - name: bookshop-destination-service
+      - name: uaa_bookshop
     parameters:
       host: ${appname}
     provides:
       - name: srv-api
         properties:
-          srv-url: '${default-url}'
+          srv-url: "${default-url}"
   - name: bookshop-db-deployer
     type: hdb
     path: gen/db
@@ -75,7 +75,7 @@ modules:
       builder: custom
       commands:
         - npm install
-        - 'npm run build:cf'
+        - "npm run build:cf"
       supported-platforms: []
 resources:
   - name: bookshop-db
@@ -84,7 +84,7 @@ resources:
       service: hana
       service-plan: hdi-shared
     properties:
-      hdi-service-name: '${service-name}'
+      hdi-service-name: "${service-name}"
   - name: bookshop-destination-service
     type: org.cloudfoundry.managed-service
     parameters:
@@ -97,14 +97,14 @@ resources:
                 Name: ui5
                 ProxyType: Internet
                 Type: HTTP
-                URL: 'https://ui5.sap.com'
+                URL: "https://ui5.sap.com"
               - Authentication: NoAuthentication
                 Name: bookshop-app-api
                 ProxyType: Internet
                 HTML5.FowardAuthToken: true
                 HTML5.DynamicDestination: true
                 Type: HTTP
-                URL: 'https://${appname}.${default-domain}'
+                URL: "https://${appname}.${default-domain}"
             existing_destinations_policy: update
         version: 1.0.0
       service: destination

@@ -33,9 +33,15 @@
                     },
                     "semanticObject": "item",
                     "action": "display",
-                    "title": "Show Items",
-                    "subTitle": "",
-                    "icon": ""
+                    "title": "Book Catalog",
+                    "subTitle": "Browse Books",
+                    "info": "Bootcamp Use Case",
+                    "icon": "sap-icon://retail-store",
+                    "indicatorDataSource": {
+                        "dataSource": "mainService",
+                        "path": "/dynamic_dest/bookshop-app-api/browse/Books/$count",
+                        "refresh": 0
+                    }
                 }
             }
         }
@@ -112,7 +118,8 @@
                                         "route": "BooksObjectPage"
                                     }
                                 }
-                            }
+                            },
+                            "initialLoad": "Enabled"
                         }
                     }
                 },
