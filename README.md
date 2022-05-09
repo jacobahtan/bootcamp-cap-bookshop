@@ -19,13 +19,9 @@ Regardless whether you're using Visual Studio code or (`recommended`) SAP Busine
   In most cases on SAP Business Application Studio, it should match and work fine. The tricky cases are coming from your local computers where we could not maintain the specific versions of all frameworks used. Thus, it is your responsibility to make sure you have the matching or latest version. If not, please follow through next step to install the frameworks in your local computer. 
   <p> 
 
-> Local Terminal from your Computer (Mac Terminal for this case)
-
-![Library Frameworks Local](https://user-images.githubusercontent.com/8436161/126598799-f79fa59c-ddc2-4ad5-bfc0-a76eb4ac47c7.png)
-
 > Bash Terminal from SAP Business Application Studio
 
-![Library Frameworks BAS](https://user-images.githubusercontent.com/8436161/126598825-84409e7e-d330-47c7-b87d-b4cca0556361.png)
+![Library Frameworks BAS](https://user-images.githubusercontent.com/8436161/167340765-3c3960d1-e5ea-415d-835f-445f7659359a.png)
 
 </details>
 <p></p>
