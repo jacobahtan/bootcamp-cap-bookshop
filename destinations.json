@@ -1,0 +1,19 @@
+{
+    "init_data": {
+        "subaccount": {
+            "existing_destinations_policy": "update",
+            "destinations": [
+                {
+                    "Name": "S4HC",
+                    "Description": "Bootcamp Purpose for S4HC Test Tenant",
+                    "Authentication": "BasicAuthentication",
+                    "ProxyType": "Internet",
+                    "Type": "HTTP",
+                    "URL": "https://_REPLACE_TENANT_ID_.s4hana.ondemand.com",
+                    "User": "_REPLACE_USER_",
+                    "Password":"_REPLACE_PASSWORD_"
+                }
+            ]
+        }
+    }
+}

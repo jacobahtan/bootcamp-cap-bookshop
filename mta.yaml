@@ -2,6 +2,16 @@ _schema-version: "3.1"
 ID: bookshop
 description: "Bookshop CAP Project for Catalog & Admin users."
 version: 1.0.0
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+  appname: bookcatalog-REPLACE_THIS_WITH_SUBDOMAIN
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
 modules:
   - name: bookshop-srv
     type: nodejs
@@ -88,6 +98,7 @@ resources:
   - name: bookshop-destination-service
     type: org.cloudfoundry.managed-service
     parameters:
+      path: ./destinations.json
       config:
         HTML5Runtime_enabled: true
         init_data:
@@ -123,13 +134,3 @@ resources:
       service: xsuaa
       service-name: bookshop-xsuaa-service
       service-plan: application
-parameters:
-  deploy_mode: html5-repo
-  enable-parallel-deployments: true
-  appname: bookcatalog-<REPLACE_THIS_WITH_SUBDOMAIN>
-build-parameters:
-  before-all:
-    - builder: custom
-      commands:
-        - npm install --production
-        - npx -p @sap/cds-dk cds build --production

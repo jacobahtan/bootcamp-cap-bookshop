@@ -1,1 +1,0 @@
-sap.ui.define(["sap/fe/core/AppComponent"],function(e){"use strict";return e.extend("catalog.Component",{metadata:{manifest:"json"}})});

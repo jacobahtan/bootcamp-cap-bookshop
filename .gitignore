@@ -29,8 +29,11 @@ mta_archives/
 
 # Node
 package-lock.json
-*.dist
+**/dist
+DELETE
+default-env.json
 
+resources/catalog.zip
 
 
 
