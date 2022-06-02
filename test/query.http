@@ -1,4 +1,5 @@
-@server = http://localhost:4004
+# @server = http://localhost:4004
+@server = https://bookcatalog-8221c96ftrial.cfapps.eu10.hana.ondemand.com
 ### ------------------------------------------------------------------------
 ### Customers Management
 
@@ -14,4 +15,4 @@ POST {{server}}/manage/Customers
 Content-Type: application/json
 Accept: application/json
 
-{ "CategoryCode": "1", "FirstName": "Blint", "LastName": "Stones" }
+{ "CategoryCode": "1", "FirstName": "Zlint", "LastName": "Stones" }

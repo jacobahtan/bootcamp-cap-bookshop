@@ -22,7 +22,7 @@ module.exports = cds.service.impl(async function () {
         console.log(dest);
     });
 
-    // Hook on Create event
+    //  Hook on POST event to create BP via payload e.g. { "CategoryCode": "1", "FirstName": "a", "LastName": "b" }
     this.after('CREATE', Customers, async (data, req) => {
         getDestination(bydDest).then(dest => {
             authToken = "Basic " + dest.authTokens[0].value;
@@ -44,8 +44,6 @@ module.exports = cds.service.impl(async function () {
             data: _prepareBpBody(data)
         };
 
-        // console.log(data);
-
         axios(config)
             .then(function (response) {
                 console.log(response);
@@ -55,6 +53,7 @@ module.exports = cds.service.impl(async function () {
             });
     });
 
+    //  Hook on GET event to retrieve list of BP from ByD
     this.on('READ', Customers, async (req) => {
         getDestination(bydDest).then(dest => {
             authToken = "Basic " + dest.authTokens[0].value;

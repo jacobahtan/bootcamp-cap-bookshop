@@ -33,3 +33,4 @@ package-lock.json
 DELETE
 default-env.json
 
+resources/catalog.zip

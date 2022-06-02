@@ -1,30 +1,16 @@
-# Bookshop Solution for SAP BTP Developer Bootcamp - SAP Cloud Application Programming Model
+# Bookshop Solution for SAP BTP Developer Bootcamp - SAP Cloud Application Programming Model with SAP Business ByDesign OData API
 
 This project is developed for the purpose of an organised partner bootcamp. Participants may clone the repository, install/build & run on your local environment or (`recommended`) SAP Business Application Studio. It is a use case to illustrate a simple bookshop management solution extended to S/4HANA Cloud with SAP Cloud SDK. _**To deploy this successful, please make sure you've the prior knowledge of [CAP](https://cap.cloud.sap/) and HAVE attended the bootcamp session.**_ 
 
-> Please note that even though S/4HANA Cloud is not a mandatory component, please adjust the code accordingly if you'd like to extend this use case further without S/4HANA Cloud. This project is developed with the intention to extend S/4HANA Cloud.
+> In this branch, it will focus on the development for SAP Business ByDesign and uses its OData API for BusinessPartners `/sap/byd/odata/cust/v1/vmubusinesspartner/BusinessPartnerCollection`. Feel free to take reference from this project and adapt to your own use case.
 
 ## Use Case Scenario
-![Use Case Story](https://user-images.githubusercontent.com/8436161/126598515-e6696f32-0504-4ecf-b5d2-1dda86e37f36.png?raw=true)
+Similar to the main branch.
 
 ## Pre-requisites
-Regardless whether you're using Visual Studio code or (`recommended`) SAP Business Application Studio, please ensure you have these components installed & setup in your local environment.
+Please use SAP Business Application Studio.
 
 > Check the following (line-by-line) command if they have already been installed, if not, install them with the respective commands below.
-
-<p></p>
-<details>
-  <summary>Hint: Click here to check if your framework version is updated.</summary>
-   <p>
-  In most cases on SAP Business Application Studio, it should match and work fine. The tricky cases are coming from your local computers where we could not maintain the specific versions of all frameworks used. Thus, it is your responsibility to make sure you have the matching or latest version. If not, please follow through next step to install the frameworks in your local computer. 
-  <p> 
-
-> Bash Terminal from SAP Business Application Studio
-
-![Library Frameworks BAS](https://user-images.githubusercontent.com/8436161/167340765-3c3960d1-e5ea-415d-835f-445f7659359a.png)
-
-</details>
-<p></p>
 
 ```bash
 node -v
@@ -34,8 +20,6 @@ mbt --version
 mta --version
 cf plugins
 ```
-
-
 
 > Install (line-by-line) on the respective libraries if any one of them above is missing.
 
@@ -47,7 +31,7 @@ npm install -g mbt
 cf install-plugin multiapps
 ```
 
-And please make sure you have both of these SAP BTP services setup successfully in your BTP trial account: 
+And please make sure you have subscribed to both of these SAP BTP services setup successfully in your BTP account: 
 
 `(1) SAP HANA Cloud` from SAP BTP Cockpit > Cloud Foundry > Spaces > dev > SAP HANA Cloud (make sure you select the option to "Allow ALL IP Addresses" during creation).
 ![SAP BTP HANA Cloud](https://user-images.githubusercontent.com/8436161/128988191-f079627d-59c3-4015-a689-d4933613ba41.png)
@@ -58,7 +42,7 @@ And please make sure you have both of these SAP BTP services setup successfully 
 ## Let's Get Started
 **Step 1:** Clone this Git Repo into a `bookshop` project folder.
 ```bash
-git clone https://github.com/jacobahtan/bootcamp-cap-bookshop.git bookshop
+git clone --branch byd https://github.com/jacobahtan/bootcamp-cap-bookshop.git bookshop-byd
 ```
 **Step 2:** Define a `unique app name` for your own Bookshop solution.
 
@@ -144,23 +128,15 @@ cf undeploy bookshop --delete-services --delete-service-keys
 
 
 
-`(Optional)` **Step 5:** Connecting to your S/4 HANA Cloud System, please follow these steps.
+**Step 5:** Connecting to your SAP Business ByDesign tenant, please follow these steps.
 
-In this step, you will require a S/4 HANA Cloud instance for this to work. Thus, if you do not have a S/4 HANA Cloud instance or NOT planning to work on the S/4 HANA component with Customer module within the Bookshop solution, you may skip this optional step entirely. However, do note that by skipping, eventually the customer module will not be working in your Bookshop solution. You should manage that accordingly prior to your newly acquired CAP knowledge.
-* Create a destination in your SAP BTP trial account, pointing to your S/4 HANA Cloud system.
-> Destination Name: `S4HC` 
+In this step, you will require a SAP Business ByDesign tenant for this to work. As well as with the right user and communication system and user created. Upon deploying successfully, you should already see this destination created for you. Now, you'd just have to edit and input the corresponding values, such as TenantID, User & Password.
 
-> Destination URL: https://`<tenant>`.s4hana.ondemand.com
+> SAP BTP Cockpit > Connectivity > Destinations > **BYD**
 
-> Authentication: BasicAuthentication
+![ByD Destination in BTP Cockpit](https://user-images.githubusercontent.com/8436161/171632048-076fa5e1-3e65-489c-a512-91e6728fe4a7.png)
 
-> User: make sure this is a technical user setup to manage BusinessPartner service
-
-> Password: xxxxxxxxxx
-
-![S4HANA Destination in BTP Cockpit](https://user-images.githubusercontent.com/8436161/126614728-8741d39e-5d1a-4429-823c-5558435b15a2.png)
-
-_Please note that the above destination name `S4HC` will be used in the Custom Logic file `Line 3` located in [srv/admin-service.js](srv/admin-service.js)._ Prior to that, please make sure you've done your own testing of calling the API with Postman to ensure that your credentials works.
+_Please note that the above destination name `BYD` will be used in the Custom Logic file located in [srv/admin-service.js](srv/admin-service.js)._ Prior to that, please make sure you've done your own testing of calling the API with Postman to ensure that your credentials works.
 
 If you face a problem with the example application or the description, feel free to create an [issue](https://github.com/jacobahtan/bootcamp-cap-bookshop/issues).
 

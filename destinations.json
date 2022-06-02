@@ -1,0 +1,19 @@
+{
+    "init_data": {
+        "subaccount": {
+            "existing_destinations_policy": "update",
+            "destinations": [
+                {
+                    "Name": "BYD",
+                    "Description": "ByD Tenant Destination for Bookshop solution.",
+                    "Authentication": "BasicAuthentication",
+                    "ProxyType": "Internet",
+                    "Type": "HTTP",
+                    "URL": "https://_REPLACE_TENANT_ID_.sapbydesign.com",
+                    "User": "_REPLACE_USER_",
+                    "Password":"_REPLACE_PASSWORD_"
+                }
+            ]
+        }
+    }
+}

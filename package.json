@@ -20,8 +20,7 @@
     },
     "devDependencies": {
         "@sap/hdi-deploy": "^4.3.3",
-        "@sap/ux-specification": "^1.100.3",
-        "sqlite3": "^5.0.8"
+        "@sap/ux-specification": "^1.100.3"
     },
     "scripts": {
         "start": "cds run"
@@ -61,7 +60,7 @@
                     "kind": "sql"
                 },
                 "[production]": {
-                    "kind": "sql"
+                    "kind": "hana"
                 }
             }
         },
