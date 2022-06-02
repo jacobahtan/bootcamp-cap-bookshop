@@ -48,6 +48,7 @@ entity Customers {
         BusinessPartnerCategory : String;
         FullName                : String;
         PersonNumber            : String;
+        CategoryCode            : String;
 }
 
 entity Orders : cuid, managed {

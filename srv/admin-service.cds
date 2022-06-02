@@ -6,6 +6,6 @@ service AdminService @(path : '/manage') @(_requires : 'authenticated-user') {
     entity Orders     as projection on my.Orders;
     entity OrderItems as projection on my.OrderItems;
     entity Customers  as projection on my.Customers {
-        BusinessPartner, LastName, FirstName, BusinessPartnerCategory, FullName, PersonNumber
+        BusinessPartner, LastName, FirstName, BusinessPartnerCategory, FullName, PersonNumber, CategoryCode
     };
 }

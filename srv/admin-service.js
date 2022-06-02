@@ -1,12 +1,10 @@
 const cds = require('@sap/cds');
-const { businessPartnerService } = require('@sap/cloud-sdk-vdm-business-partner-service');
-const { businessPartnerApi } = businessPartnerService();
-const sdkDest = { "destinationName": 'S4HC' };
+const axios = require('axios');
+const xsenv = require('@sap/xsenv');
+const bydDest = "BYD";  //  create a simple basic auth destination in your btp cockpit
 const {
-    buildBusinessPartnerForCreate,
-    formatBPResultsForCAPOData,
-    cleanJsonDuplicates,
-    convert2CDSFormat
+    formatByDBPResultsForCAPOData,
+    _prepareBpBody
 } = require('./helper');
 
 module.exports = cds.service.impl(async function () {
@@ -15,94 +13,129 @@ module.exports = cds.service.impl(async function () {
     // e.g. const { Customers, Orders, Books } = this.entities;
     const { Customers } = this.entities;
 
+    var authToken, bydDestUrl, xcsrfToken, cookies;
+
+    getDestination(bydDest).then(dest => {
+        authToken = "Basic " + dest.authTokens[0].value;
+        bydDestUrl = dest.destinationConfiguration.URL;
+        console.log("dest here, auth token automatically gen for you, so you may consume it on subsequent calls");
+        console.log(dest);
+    });
+
     // Hook on Create event
     this.after('CREATE', Customers, async (data, req) => {
-    // this.after('CREATE', Customers, async (data) => {
-        /**
-         * [IMPORTANT NOTE]
-         * - The following logic below creates BP in S4HANA & a Customer record in your CAP Data Model.
-         * - This is just an example of POST/Creating a record into S4HANA.
-         * - Based on the use case or right logic, ONLY 1 source of truth should be maintained, which should be S4.
-         *
-         * - TODO: Improve logic to achieve creation of BP ONLY in S4HANA.
-         * Please note that below is a quick workaround to rollback the transaction on POST Customer into CAP Data Model.
-         * 
-         */
+        getDestination(bydDest).then(dest => {
+            authToken = "Basic " + dest.authTokens[0].value;
+            bydDestUrl = dest.destinationConfiguration.URL;
+        });
 
-        // Requirement: ONLY create BP in S4HC to uphold a single source of truth, thus rollback CDS (SAP HANA CLOUD) txn.
-        // Undo the default CREATE operation from the CDS CRUD default generic handler
-        // NOTE: here a pre-defined attribute can be checked to determine whether to stick with CDS or go with S4
-        const tx = cds.tx(req);
+        var axios = require('axios');
 
-        // Create BP in S/4HANA
-        try {
-            const bp = buildBusinessPartnerForCreate(data);
-            const result = await businessPartnerApi
-                .requestBuilder()
-                .create(bp)
-                .execute(sdkDest);
-            // return result;
-            tx.rollback();
-            return convert2CDSFormat(result);
-        } catch (err) {
-            return err;
-        }
+        var config = {
+            method: 'post',
+            url: bydDestUrl + "/sap/byd/odata/cust/v1/vmubusinesspartner/BusinessPartnerCollection",
+            headers: {
+                'Authorization': authToken,
+                'Content-Type': 'application/json',
+                'x-csrf-token': xcsrfToken,
+                'Accept': 'application/json',
+                'Cookie': cookies
+            },
+            data: _prepareBpBody(data)
+        };
+
+        // console.log(data);
+
+        axios(config)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     });
 
-    this.on('READ', Customers, async () => {
-        /** [START] SCENARIO A
-        * Connect with Cloud SDK to S4 to retrieve ALL customers
-        * Return results as ALL customers.
-        */
+    this.on('READ', Customers, async (req) => {
+        getDestination(bydDest).then(dest => {
+            authToken = "Basic " + dest.authTokens[0].value;
+            bydDestUrl = dest.destinationConfiguration.URL;
+        });
 
-        // const s4bp = await BusinessPartner.requestBuilder()
-        //     .getAll()
-        //     .select(
-        //         BusinessPartner.BUSINESS_PARTNER,
-        //         BusinessPartner.FIRST_NAME,
-        //         BusinessPartner.LAST_NAME,
-        //         BusinessPartner.INDUSTRY,
-        //         BusinessPartner.BUSINESS_PARTNER_CATEGORY)
-        //     .execute(sdkDest);
-        // return formatBPResultsForCAPOData(s4bp);
-        /** [END] */
+        var axios = require('axios');
 
-
-        /** [START] SCENARIO B
-        * Connect with Cloud SDK to S4 to retrieve ALL customers
-        * Match customers with existing orders in Bookshop
-        * Return results ONLY Bookshop customers.
-        */
-
-        const bookshopOrders = await cds.read('Orders');
-        const bookshopCustomers = [];
-        const s4bp = await businessPartnerApi.requestBuilder()
-            .getAll()
-            .select(
-                businessPartnerApi.schema.BUSINESS_PARTNER,
-                businessPartnerApi.schema.BUSINESS_PARTNER_FULL_NAME,
-                businessPartnerApi.schema.FIRST_NAME,
-                businessPartnerApi.schema.LAST_NAME,
-                businessPartnerApi.schema.PERSON_NUMBER,
-                businessPartnerApi.schema.INDUSTRY,
-                businessPartnerApi.schema.BUSINESS_PARTNER_CATEGORY)
-            .execute(sdkDest);
-        // console.log(JSON.stringify(s4bp));
-        var bp = formatBPResultsForCAPOData(s4bp);
-        for (let i = 0; i < bp.length; i++) {
-            var cust = bp[i].BusinessPartner
-            // console.log(JSON.stringify(bp[i]));
-            for (let k = 0; k < bookshopOrders.length; k++) {
-                if (cust == bookshopOrders[k].customer) {
-                    // BP is Bookshop Customer
-                    var x = { "BusinessPartner": bp[i].BusinessPartner, "FirstName": bp[i].FirstName, "LastName": bp[i].LastName, "FullName": bp[i].FullName, "PersonNumber": bp[i].PersonNumber };
-                    bookshopCustomers.push(x);
-                }
+        var config = {
+            method: 'get',
+            url: bydDestUrl + "/sap/byd/odata/cust/v1/vmubusinesspartner/BusinessPartnerCollection?$format=json&$filter=CategoryCode eq '1'&$select=InternalID,FirstName,LastName,BusinessPartnerFormattedName,RoleCode,CategoryCode",
+            headers: {
+                'Authorization': authToken,
+                'Content-Type': 'application/json',
+                'x-csrf-token': 'fetch'
             }
-        }
+        };
 
-        return cleanJsonDuplicates(bookshopCustomers);
+        return axios(config)
+            .then(function (response) {
+                // console.log(response);  //  data: { d: { results: [...
+                // console.log(response.data.d.results);
+                xcsrfToken = response.headers['x-csrf-token'];
+                console.log(xcsrfToken);
+                var a, b, c;
+                a = response.headers['set-cookie'][0];
+                b = response.headers['set-cookie'][1];
+                c = response.headers['set-cookie'][2];
+                cookies = a + ";" + b + ";" + c;
+                console.log(cookies);
+                var bydbupa = response.data.d.results;
+                var x = formatByDBPResultsForCAPOData(bydbupa);
+                // console.log(x);
+                return x;
 
-        /** [END] */
+            })
+            .catch(function (error) {
+                // console.log(error);  
+                //  vs code/bas, settings, scrollback, set to 100000 lines so u can see logs
+            });
     });
 });
+
+/** Default Helper function to auth your app getting connected with SAP BTP Destination services and return Destination object. */
+//  To Improve: replace with cloud sdk core
+async function getDestination(dest) {
+    try {
+        xsenv.loadEnv();
+        let services = xsenv.getServices({
+            dest: { tag: 'destination' }
+        });
+        try {
+            let options1 = {
+                method: 'POST',
+                url: services.dest.url + '/oauth/token?grant_type=client_credentials',
+                headers: {
+                    Authorization: 'Basic ' + Buffer.from(services.dest.clientid + ':' + services.dest.clientsecret).toString('base64')
+                }
+            };
+            let res1 = await axios(options1);
+            try {
+                options2 = {
+                    method: 'GET',
+                    url: services.dest.uri + '/destination-configuration/v1/destinations/' + dest,
+                    headers: {
+                        Authorization: 'Bearer ' + res1.data.access_token
+                    }
+                };
+                let res2 = await axios(options2);
+                // return res2.data.destinationConfiguration;
+                return res2.data;
+            } catch (err) {
+                console.log(err.stack);
+                return err.message;
+            }
+        } catch (err) {
+            console.log(err.stack);
+            return err.message;
+        }
+    } catch (err) {
+        console.log(err.stack);
+        return err.message;
+    }
+};

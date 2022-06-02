@@ -1,32 +1,52 @@
 {
     "VCAP_SERVICES": {
-        "hana": [
-            {
-                "name": "<SERVICE_NAME>",
-                "tags": [
-                    "hana"
-                ],
-                "credentials": <PASTE_JSON_CREDENTIALS_HERE>
-            }
-        ],
         "destination": [
             {
-                "name": "<SERVICE_NAME>",
+                "name": "sustainable-smart-factory-app-destination-service",
                 "label": "destination",
                 "tags": [
                     "destination"
                 ],
-                "credentials": <PASTE_JSON_CREDENTIALS_HERE>
+                "credentials": {
+                    "tenantmode": "dedicated",
+                    "clientid": "sb-clone7303dd69aa9e44b8a08fb70e36fea4a3!b111216|destination-xsappname!b404",
+                    "credential-type": "binding-secret",
+                    "xsappname": "clone7303dd69aa9e44b8a08fb70e36fea4a3!b111216|destination-xsappname!b404",
+                    "clientsecret": "faaf88fe-d29d-4bdf-b8a2-c0d608d4340f$s6vq7pR2KIG4sxejJSXOqvZIzLfdWkQv6wO-HThU1k0=",
+                    "uri": "https://destination-configuration.cfapps.eu10.hana.ondemand.com",
+                    "url": "https://8221c96ftrial.authentication.eu10.hana.ondemand.com",
+                    "uaadomain": "authentication.eu10.hana.ondemand.com",
+                    "instanceid": "7303dd69-aa9e-44b8-a08f-b70e36fea4a3",
+                    "verificationkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzn1eBoaonn/Zrx2Z4UpnB8UZs/OsQSWlHipBZmOVEt/gqSyWZ6PwobJ+0o4My9yggklhXIWlHaBZO8I+Y6ecldtY9tb9t2BxHvwz2ADfQeaTyc4SpPpvkl35o4iBj6X3ElKaW9LMHk3x4b3P2oSky86epeFmwOMgg9KXfJ/VI6JokJHXrb44Ss1OOyjvhtd5kLI7CYLcHKx1CIsOiDZQyX9ZjuZ+aDspfQffib0DT7ie4EjuiqWkKg43B/onm4HOiDUlKSn8TxWP/fgYOWjyAhGz5MnwhcgOIOZbZ2IiFueNr90MW1kuk/1vmzOvv60PLW2/+pvWv4FjO0B+z9DhMwIDAQAB-----END PUBLIC KEY-----",
+                    "identityzone": "8221c96ftrial",
+                    "tenantid": "2d496316-67c0-4dce-a398-0cb30cb28a35"
+                }
             }
         ],
         "xsuaa": [
             {
-                "name": "<SERVICE_NAME>",
+                "name": "sustainable-smart-factory-app-xsuaa-service",
                 "label": "xsuaa",
                 "tags": [
                     "xsuaa"
                 ],
-                "credentials": <PASTE_JSON_CREDENTIALS_HERE>
+                "credentials": {
+                    "tenantmode": "dedicated",
+                    "sburl": "https://internal-xsuaa.authentication.eu10.hana.ondemand.com",
+                    "subaccountid": "2d496316-67c0-4dce-a398-0cb30cb28a35",
+                    "credential-type": "instance-secret",
+                    "clientid": "sb-smart-factory-8221c96ftrial!t111216",
+                    "xsappname": "smart-factory-8221c96ftrial!t111216",
+                    "clientsecret": "RIs7dCpk/e/oTnqkTIVlW9zwq/I=",
+                    "url": "https://8221c96ftrial.authentication.eu10.hana.ondemand.com",
+                    "uaadomain": "authentication.eu10.hana.ondemand.com",
+                    "verificationkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzn1eBoaonn/Zrx2Z4UpnB8UZs/OsQSWlHipBZmOVEt/gqSyWZ6PwobJ+0o4My9yggklhXIWlHaBZO8I+Y6ecldtY9tb9t2BxHvwz2ADfQeaTyc4SpPpvkl35o4iBj6X3ElKaW9LMHk3x4b3P2oSky86epeFmwOMgg9KXfJ/VI6JokJHXrb44Ss1OOyjvhtd5kLI7CYLcHKx1CIsOiDZQyX9ZjuZ+aDspfQffib0DT7ie4EjuiqWkKg43B/onm4HOiDUlKSn8TxWP/fgYOWjyAhGz5MnwhcgOIOZbZ2IiFueNr90MW1kuk/1vmzOvv60PLW2/+pvWv4FjO0B+z9DhMwIDAQAB-----END PUBLIC KEY-----",
+                    "apiurl": "https://api.authentication.eu10.hana.ondemand.com",
+                    "identityzone": "8221c96ftrial",
+                    "identityzoneid": "2d496316-67c0-4dce-a398-0cb30cb28a35",
+                    "tenantid": "2d496316-67c0-4dce-a398-0cb30cb28a35",
+                    "zoneid": "2d496316-67c0-4dce-a398-0cb30cb28a35"
+                }
             }
         ]
     }
